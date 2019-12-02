@@ -1,4 +1,4 @@
-import { vuexfireMutations } from 'vuexfire'
+import { firestoreAction, vuexfireMutations } from 'vuexfire'
 
 export const state = () => ({
   books: []
@@ -12,9 +12,9 @@ export const mutations = {
 }
 
 export const actions = {
-  setBooks({ commit }, books) {
-    commit('setBooks', books)
-  }
+  setBooks: firestoreAction((context, ref) => {
+    context.bindFirestoreRef('books', ref).then(() => {})
+  })
 }
 
 export const getters = {
