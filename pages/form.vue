@@ -6,20 +6,23 @@
       :rules="rules"
       label-width="120px"
     >
-      <el-form-item label="Title" prop="title">
+      <el-form-item label="タイトル" prop="title">
         <el-input v-model="ruleForm.title" />
       </el-form-item>
 
-      <el-form-item label="Author" prop="author">
+      <el-form-item label="著者" prop="author">
         <el-input v-model="ruleForm.author" />
       </el-form-item>
 
-      <el-form-item label="Price" prop="price">
+      <el-form-item label="価格" prop="price">
         <el-input v-model.number="ruleForm.price" />
       </el-form-item>
 
-      <el-form-item label="Tags" prop="tags">
-        <el-input v-model="ruleForm.tags" />
+      <el-form-item label="タグ" prop="tags">
+        <el-input
+          v-model="ruleForm.tags"
+          placeholder="スペース区切りで5つまで登録可能 "
+        />
       </el-form-item>
 
       <el-form-item>
