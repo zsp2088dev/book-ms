@@ -1,11 +1,14 @@
 <template>
   <div class="app-book">
     <el-card class="card" shadow="hover">
-      <img :src="path" alt="icon" class="image" width="150" height="150" />
-      <p>{{ title }}</p>
-      <p>{{ author }}</p>
-      <p>{{ price }}円</p>
-
+      <div class="app-book-image">
+        <img :src="path" alt="icon" width="150" height="150" />
+      </div>
+      <div class="app-book-contents">
+        <p class="app-book-title">{{ title }}</p>
+        <p class="app-book-author">{{ author }}</p>
+        <p class="app-book-price">￥ {{ toLocalePrice }}</p>
+      </div>
       <div style="text-align: left">
         <el-tag
           v-for="(tag, index) in tags"
@@ -44,6 +47,9 @@ export default {
   computed: {
     path() {
       return require(`@/assets/images/book.svg`)
+    },
+    toLocalePrice() {
+      return this.price.toLocaleString()
     }
   }
 }
@@ -51,8 +57,32 @@ export default {
 
 <style scoped>
 .app-book {
-  text-align: center;
   width: 340px;
+}
+
+.app-book-image {
+  text-align: center;
+}
+
+.app-book-contents {
+  text-align: left;
+}
+
+.app-book-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.app-book-author {
+  color: #606266;
+  margin-bottom: 0.5rem;
+}
+
+.app-book-price {
+  color: #606266;
+  margin-bottom: 0.5rem;
 }
 
 .tag {
