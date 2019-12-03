@@ -29,7 +29,7 @@
         <el-button @click="submitForm('ruleForm')" type="primary"
           >Submit</el-button
         >
-        <el-button @click="resetForm('ruleForm')">Cancel</el-button>
+        <el-button @click="resetForm">Cancel</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -110,8 +110,8 @@ export default {
         }
       })
     },
-    resetForm(form) {
-      this.$refs[form].resetFields()
+    resetForm() {
+      this.$router.push('/')
     }
   }
 }
