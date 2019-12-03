@@ -106,6 +106,8 @@ export default {
 
 <style scoped>
 .app-form {
+  text-align: center;
+  margin: auto;
   width: 500px;
 }
 </style>
