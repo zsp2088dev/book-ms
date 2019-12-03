@@ -1,6 +1,6 @@
 <template>
   <div class="app-book">
-    <el-card class="card">
+    <el-card class="card" shadow="hover">
       <img :src="path" alt="icon" class="image" width="100" height="100" />
       <p>{{ title }}</p>
       <p>{{ author }}</p>
