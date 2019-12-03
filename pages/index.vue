@@ -1,12 +1,19 @@
 <template>
   <div class="container">
-    <el-row>
-      <el-col :span="3" v-for="(book, index) in books" :key="index" :offset="2">
+    <el-row :gutter="20">
+      <el-col
+        v-for="(book, index) in books"
+        :key="index"
+        :span="6"
+        :offset="0"
+        class="col"
+      >
         <app-book
           :title="book.title"
           :author="book.author"
           :price="book.price"
           :tags="book.tags"
+          class="app-book"
         ></app-book>
       </el-col>
     </el-row>
@@ -31,3 +38,13 @@ export default {
   }
 }
 </script>
+
+<style>
+.col {
+  margin-bottom: 20px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+</style>

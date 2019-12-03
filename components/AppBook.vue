@@ -1,6 +1,6 @@
 <template>
   <div class="app-book">
-    <el-card>
+    <el-card class="card">
       <img :src="path" alt="icon" class="image" width="100" height="100" />
       <p>{{ title }}</p>
       <p>{{ author }}</p>
@@ -52,7 +52,7 @@ export default {
 <style scoped>
 .app-book {
   text-align: center;
-  width: 250px;
+  width: 340px;
 }
 
 .tag {
