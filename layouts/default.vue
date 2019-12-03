@@ -2,7 +2,7 @@
   <el-container class="app">
     <el-header>
       <div class="header">
-        <h1>Book MS</h1>
+        <img :src="path" alt="logo" width="224" />
       </div>
     </el-header>
 
@@ -11,6 +11,16 @@
     </el-main>
   </el-container>
 </template>
+
+<script>
+export default {
+  computed: {
+    path() {
+      return require(`@/assets/images/logo.svg`)
+    }
+  }
+}
+</script>
 
 <style>
 * {
@@ -34,6 +44,7 @@
   line-height: 80px;
   margin-left: 80px;
   margin-right: 80px;
+  padding-top: 20px;
   border-bottom-color: rgb(220, 223, 230);
   border-bottom-style: solid;
   border-bottom-width: 1px;
