@@ -1,20 +1,23 @@
 <template>
   <div class="app-book">
-    <el-card class="card">
-      <img :src="path" alt="icon" class="image" width="100" height="100" />
-      <p>{{ title }}</p>
-      <p>{{ author }}</p>
-      <p>{{ price }}円</p>
-
-      <div style="text-align: left">
-        <el-tag
+    <el-card class="card" shadow="hover">
+      <div class="app-book-image">
+        <img :src="path" alt="icon" width="150" height="150" />
+      </div>
+      <div class="app-book-contents">
+        <p class="app-book-title">{{ title }}</p>
+        <p class="app-book-author">{{ author }}</p>
+        <p class="app-book-price">￥ {{ toLocalePrice }}</p>
+      </div>
+      <div style="text-align: left" class="app-book-tags">
+        <el-button
           v-for="(tag, index) in tags"
           :key="index"
-          effect="dark"
-          class="tag"
+          plain
+          class="app-book-tag"
         >
-          {{ tag }}
-        </el-tag>
+          #{{ tag }}
+        </el-button>
       </div>
     </el-card>
   </div>
@@ -43,7 +46,10 @@ export default {
   },
   computed: {
     path() {
-      return require(`@/assets/images/note.svg`)
+      return require(`@/assets/images/book.svg`)
+    },
+    toLocalePrice() {
+      return this.price.toLocaleString()
     }
   }
 }
@@ -51,11 +57,42 @@ export default {
 
 <style scoped>
 .app-book {
-  text-align: center;
   width: 340px;
 }
 
-.tag {
+.app-book-image {
+  text-align: center;
+}
+
+.app-book-contents {
+  text-align: left;
+}
+
+.app-book-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.app-book-author {
+  color: #606266;
+  margin-bottom: 0.5rem;
+}
+
+.app-book-price {
+  color: #606266;
+  margin-bottom: 0.5rem;
+}
+
+.app-book-tags {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+
+.app-book-tag {
   margin: 0.25rem;
 }
 </style>

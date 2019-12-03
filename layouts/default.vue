@@ -51,7 +51,7 @@ export default {
 }
 
 .main {
-  margin-top: 30px;
+  margin-top: 80px;
   margin-left: 80px;
   margin-right: 80px;
 }
