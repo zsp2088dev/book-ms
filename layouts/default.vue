@@ -23,6 +23,7 @@
     'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', Roboto, Arial,
     sans-serif;
   font-size: 16px;
+  font-weight: 400;
   color: #2e2e2e;
   -webkit-font-smoothing: antialiased;
 }
@@ -36,5 +37,11 @@
   border-bottom-color: rgb(220, 223, 230);
   border-bottom-style: solid;
   border-bottom-width: 1px;
+}
+
+.main {
+  margin-top: 30px;
+  margin-left: 80px;
+  margin-right: 80px;
 }
 </style>
