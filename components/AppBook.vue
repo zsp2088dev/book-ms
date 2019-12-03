@@ -1,7 +1,7 @@
 <template>
   <div class="app-book">
     <el-card class="card" shadow="hover">
-      <img :src="path" alt="icon" class="image" width="100" height="100" />
+      <img :src="path" alt="icon" class="image" width="150" height="150" />
       <p>{{ title }}</p>
       <p>{{ author }}</p>
       <p>{{ price }}円</p>
@@ -43,7 +43,7 @@ export default {
   },
   computed: {
     path() {
-      return require(`@/assets/images/note.svg`)
+      return require(`@/assets/images/book.svg`)
     }
   }
 }
