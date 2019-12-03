@@ -26,19 +26,19 @@ export default {
   props: {
     title: {
       type: String,
-      default: ''
+      default: 'Default Title'
     },
     author: {
       type: String,
-      default: ''
+      default: 'Default Author'
     },
     price: {
       type: Number,
-      default: 0
+      default: 1000
     },
     tags: {
       type: Array,
-      default: null
+      default: () => ['Tag1', 'Tag2', 'Tag3']
     }
   },
   computed: {
