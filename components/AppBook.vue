@@ -9,15 +9,15 @@
         <p class="app-book-author">{{ author }}</p>
         <p class="app-book-price">￥ {{ toLocalePrice }}</p>
       </div>
-      <div style="text-align: left">
-        <el-tag
+      <div style="text-align: left" class="app-book-tags">
+        <el-button
           v-for="(tag, index) in tags"
           :key="index"
-          effect="dark"
-          class="tag"
+          plain
+          class="app-book-tag"
         >
-          {{ tag }}
-        </el-tag>
+          #{{ tag }}
+        </el-button>
       </div>
     </el-card>
   </div>
@@ -85,7 +85,14 @@ export default {
   margin-bottom: 0.5rem;
 }
 
-.tag {
+.app-book-tags {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+
+.app-book-tag {
   margin: 0.25rem;
 }
 </style>
