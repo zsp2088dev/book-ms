@@ -1,6 +1,6 @@
 <template>
   <div class="app-book">
-    <el-card>
+    <el-card class="card">
       <img :src="path" alt="icon" class="image" width="100" height="100" />
       <p>{{ title }}</p>
       <p>{{ author }}</p>
@@ -26,19 +26,19 @@ export default {
   props: {
     title: {
       type: String,
-      default: ''
+      default: 'Default Title'
     },
     author: {
       type: String,
-      default: ''
+      default: 'Default Author'
     },
     price: {
       type: Number,
-      default: 0
+      default: 1000
     },
     tags: {
       type: Array,
-      default: null
+      default: () => ['Tag1', 'Tag2', 'Tag3']
     }
   },
   computed: {
@@ -52,7 +52,7 @@ export default {
 <style scoped>
 .app-book {
   text-align: center;
-  width: 250px;
+  width: 340px;
 }
 
 .tag {
