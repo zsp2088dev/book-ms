@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { db } from '~/plugins/firebase'
+
 export default {
   data() {
     const validateTitle = (rule, value, callback) => {
@@ -91,7 +93,18 @@ export default {
     submitForm(form) {
       this.$refs[form].validate((valid) => {
         if (valid) {
-          alert('submit!')
+          const bookRef = {
+            title: this.ruleForm.title,
+            author: this.ruleForm.author,
+            price: this.ruleForm.price,
+            tags: this.ruleForm.tags.split(' ')
+          }
+
+          db.collection('books')
+            .add(bookRef)
+            .then(() => {
+              this.$router.push('/')
+            })
         } else {
           return false
         }
