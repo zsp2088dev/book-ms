@@ -3,13 +3,6 @@
     <el-header>
       <div class="header">
         <img :src="path" alt="logo" width="224" />
-        <el-input
-          v-model="input"
-          placeholder="タイトル、著者名、タグで検索"
-          class="header-search-input"
-        >
-          <el-button slot="append" icon="el-icon-search"></el-button>
-        </el-input>
       </div>
     </el-header>
 
@@ -21,11 +14,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      input: ''
-    }
-  },
   computed: {
     path() {
       return require(`@/assets/images/logo.svg`)
@@ -64,12 +52,6 @@ export default {
   display: flex;
   -webkit-justify-content: flex-start;
   justify-content: flex-start;
-}
-
-.header-search-input {
-  width: 500px;
-  margin-left: 30px;
-  padding-top: 20px;
 }
 
 .main {
