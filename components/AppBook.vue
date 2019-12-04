@@ -66,6 +66,7 @@ export default {
 
 .app-book-contents {
   text-align: left;
+  height: 200px;
 }
 
 .app-book-title {
