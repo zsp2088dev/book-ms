@@ -3,6 +3,9 @@
     <el-header>
       <div class="header">
         <img :src="path" alt="logo" width="224" />
+        <el-button @click="registerBook" icon="el-icon-plus" class="form-button"
+          >新規登録</el-button
+        >
       </div>
     </el-header>
 
@@ -17,6 +20,11 @@ export default {
   computed: {
     path() {
       return require(`@/assets/images/logo.svg`)
+    }
+  },
+  methods: {
+    registerBook() {
+      this.$router.push('/form')
     }
   }
 }
@@ -50,8 +58,14 @@ export default {
   border-bottom-width: 1px;
   display: -webkit-flex;
   display: flex;
-  -webkit-justify-content: flex-start;
-  justify-content: flex-start;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.form-button {
+  height: 50px;
+  margin-right: 30px;
+  margin-top: 15px;
 }
 
 .main {
