@@ -48,6 +48,10 @@ export default {
   border-bottom-color: rgb(220, 223, 230);
   border-bottom-style: solid;
   border-bottom-width: 1px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .main {
