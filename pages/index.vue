@@ -6,11 +6,7 @@
         placeholder="タイトル、著者名、タグで検索"
         class="header-search-input"
       >
-        <el-button
-          slot="append"
-          @click="search"
-          icon="el-icon-search"
-        ></el-button>
+        <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
     </div>
     <div class="books">
