@@ -6,13 +6,17 @@
         placeholder="タイトル、著者名、タグで検索"
         class="header-search-input"
       >
-        <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-button
+          slot="append"
+          @click="search"
+          icon="el-icon-search"
+        ></el-button>
       </el-input>
     </div>
     <div class="books">
       <el-row :gutter="20">
         <el-col
-          v-for="(book, index) in books"
+          v-for="(book, index) in filteredBooks"
           :key="index"
           :span="6"
           :offset="0"
@@ -32,7 +36,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+import Fuse from 'fuse.js'
 import AppBook from '../components/AppBook'
 import { db } from '~/plugins/firebase'
 
@@ -44,7 +49,17 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ books: 'getBooks' })
+    ...mapGetters({ books: 'getBooks' }),
+    filteredBooks() {
+      if (this.input.length === 0) {
+        return this.books
+      }
+
+      const options = {
+        keys: ['title', 'author', 'tags']
+      }
+      return new Fuse(this.books, options).search(this.input)
+    }
   },
   created() {
     this.$store.dispatch('setBooks', db.collection('books'))
