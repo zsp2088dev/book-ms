@@ -1,22 +1,32 @@
-# book-ms
+# Book MS
+![Book MS](static/book-ms.png)
 
-> Book Management System
+## 動作環境
+- Web: Nuxt.js
+- Store: Vuex 
+- Style: Element UI
+- Hosting: Firebase Hosting
+- DB: Cloud Firestore
+- VCS: Git + GitHub
+- CI/CD: GitHub Actions 
 
-## Build Setup
+## ビルドとセットアップ
 
 ``` bash
-# install dependencies
+# パッケージのインストール
 $ yarn install
 
-# serve with hot reload at localhost:3000
+# 開発環境で実行 (localhost:3000)
 $ yarn dev
 
-# build for production and launch server
+# ビルドして実行
 $ yarn build
 $ yarn start
 
-# generate static project
+# アプリケーションをビルドして静的ファイルを生成
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## 製作者
+- Name: Kazuki Yamagata
+- Twitter: [@zsp2088dev](https://twitter.com/zsp2088dev)
+- Website: [Zu's Portfolio](https://zsp2088dev.netlify.com/)
