@@ -31,6 +31,6 @@ export default {
 
 <style scoped>
 .book-search-input {
-  text-align: center;
+  width: 50%;
 }
 </style>
