@@ -1,6 +1,10 @@
 <template>
   <div class="register-book-button">
-    <el-button icon="el-icon-plus" class="register-book-el-button">
+    <el-button
+      @click="pushRegisterBookPage"
+      icon="el-icon-plus"
+      class="register-book-el-button"
+    >
       新規登録
     </el-button>
   </div>
@@ -8,7 +12,12 @@
 
 <script>
 export default {
-  name: 'RegisterBookButton'
+  name: 'RegisterBookButton',
+  methods: {
+    pushRegisterBookPage() {
+      this.$router.push('/form')
+    }
+  }
 }
 </script>
 
