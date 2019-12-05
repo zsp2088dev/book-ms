@@ -3,6 +3,7 @@
     <div class="app-home-top">
       <register-book-button />
       <book-search-input @keyword="createFilteredBooks" />
+      <sign-out-button />
     </div>
     <book-card-list :books="filteredBooks" class="app-home-book-card-list" />
   </div>
@@ -13,12 +14,18 @@ import { mapActions, mapGetters } from 'vuex'
 import BookCardList from '../components/03_organisms/scoped/BookCardList'
 import BookSearchInput from '../components/02_molecules/form/BookSearchInput'
 import RegisterBookButton from '../components/01_atoms/button/RegisterBookButton'
+import SignOutButton from '../components/01_atoms/button/SignOutButton'
 import { db } from '~/plugins/firebase'
 import { getFilteredBooks } from '~/plugins/books'
 
 export default {
   name: 'AppHome',
-  components: { RegisterBookButton, BookSearchInput, BookCardList },
+  components: {
+    SignOutButton,
+    RegisterBookButton,
+    BookSearchInput,
+    BookCardList
+  },
   data() {
     return {
       filteredBooks: []
