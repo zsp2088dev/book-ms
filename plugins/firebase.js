@@ -19,6 +19,9 @@ export { db }
 
 const signIn = () => {
   const provider = new firebase.auth.GoogleAuthProvider()
+  provider.setCustomParameters({
+    hd: 'sakailab.info'
+  })
   firebase
     .auth()
     .signInWithRedirect(provider)
