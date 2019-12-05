@@ -13,6 +13,7 @@
           :author="book.author"
           :price="book.price"
           :tags="book.tags"
+          class="book-card"
         />
       </el-col>
     </el-row>
@@ -33,4 +34,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.book-card {
+  margin-bottom: 25px;
+}
+</style>

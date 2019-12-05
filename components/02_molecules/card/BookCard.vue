@@ -1,16 +1,18 @@
 <template>
   <div class="book-card">
-    <el-card>
-      <book-icon />
+    <el-card class="book-el-card">
+      <book-icon class="book-card-icon" />
       <book-title-text :title="title" class="book-card-title" />
       <book-author-text :author="author" class="book-card-author" />
       <book-price-text :price="price" class="book-card-price" />
-      <book-tag
-        v-for="(tag, index) in tags"
-        :key="index"
-        :tag="tag"
-        class="book-card-tag"
-      />
+      <div class="book-card-tags">
+        <book-tag
+          v-for="(tag, index) in tags"
+          :key="index"
+          :tag="tag"
+          class="book-card-tag"
+        />
+      </div>
     </el-card>
   </div>
 </template>
@@ -52,6 +54,14 @@ export default {
 </script>
 
 <style scoped>
+.book-el-card {
+  height: 400px;
+}
+
+.book-card-icon {
+  text-align: center;
+}
+
 .book-card-title {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -63,6 +73,13 @@ export default {
 
 .book-card-price {
   margin-bottom: 0.5rem;
+}
+
+.book-card-tags {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
 }
 
 .book-card-tag {
