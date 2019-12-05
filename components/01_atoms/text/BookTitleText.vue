@@ -1,6 +1,6 @@
 <template>
   <div class="book-title-text">
-    <p>{{ title }}</p>
+    <p>{{ bookTitle }}</p>
   </div>
 </template>
 
@@ -11,6 +11,15 @@ export default {
     title: {
       type: String,
       default: ''
+    }
+  },
+  computed: {
+    bookTitle() {
+      if (this.title.length < 24) {
+        return this.title
+      } else {
+        return this.title.substring(0, 22) + ' ...'
+      }
     }
   }
 }
