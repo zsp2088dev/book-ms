@@ -31,7 +31,7 @@ export default {
       return
     }
 
-    this.setUsername(user.uid)
+    this.setUsername(user.displayName)
     this.$router.push('/')
   },
   methods: {
