@@ -16,3 +16,20 @@ export default firebase
 
 const db = firestore()
 export { db }
+
+const signIn = () => {
+  const provider = new firebase.auth.GoogleAuthProvider()
+  firebase
+    .auth()
+    .signInWithRedirect(provider)
+    .then(() => {})
+}
+
+const signOut = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {})
+}
+
+export { signIn, signOut }
