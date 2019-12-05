@@ -68,8 +68,8 @@ export default {
       if (!value) {
         return callback(new Error('タグを1つ以上入力してください'))
       }
-      if (value.split(' ').length > 5) {
-        callback(new Error('タグの上限は5つです'))
+      if (value.split(' ').length > 2) {
+        callback(new Error('タグの上限は2つです'))
       } else {
         callback()
       }

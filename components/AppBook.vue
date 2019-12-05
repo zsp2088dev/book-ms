@@ -5,7 +5,7 @@
         <img :src="path" alt="icon" width="150" height="150" />
       </div>
       <div class="app-book-contents">
-        <p class="app-book-title">{{ title }}</p>
+        <p class="app-book-title">{{ bookTitle }}</p>
         <p class="app-book-author">{{ author }}</p>
         <p class="app-book-price">￥ {{ toLocalePrice }}</p>
       </div>
@@ -50,6 +50,12 @@ export default {
     },
     toLocalePrice() {
       return this.price.toLocaleString()
+    },
+    bookTitle() {
+      if (this.title.length < 24) {
+        return this.title
+      }
+      return this.title.substring(0, 22) + ' ...'
     }
   }
 }
@@ -66,6 +72,7 @@ export default {
 
 .app-book-contents {
   text-align: left;
+  height: 200px;
 }
 
 .app-book-title {
