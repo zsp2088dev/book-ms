@@ -1,87 +1,52 @@
 <template>
-  <div class="container">
-    <div class="search">
-      <el-input
-        v-model="input"
-        placeholder="タイトル、著者名、タグで検索"
-        class="header-search-input"
-      >
-        <el-button slot="append" icon="el-icon-search"></el-button>
-      </el-input>
+  <div class="app-home">
+    <div class="app-home-top">
+      <register-book-button />
+      <book-search-input @keyword="createFilteredBooks" />
     </div>
-    <div class="books">
-      <el-row :gutter="20">
-        <el-col
-          v-for="(book, index) in filteredBooks"
-          :key="index"
-          :span="6"
-          :offset="0"
-          class="col"
-        >
-          <app-book
-            :title="book.title"
-            :author="book.author"
-            :price="book.price"
-            :tags="book.tags"
-            class="app-book"
-          ></app-book>
-        </el-col>
-      </el-row>
-    </div>
+    <book-card-list :books="filteredBooks" class="app-home-book-card-list" />
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import Fuse from 'fuse.js'
-import AppBook from '../components/AppBook'
+import BookCardList from '../components/03_organisms/scoped/BookCardList'
+import BookSearchInput from '../components/02_molecules/form/BookSearchInput'
+import RegisterBookButton from '../components/01_atoms/button/RegisterBookButton'
 import { db } from '~/plugins/firebase'
+import { getFilteredBooks } from '~/plugins/books'
 
 export default {
-  components: { AppBook },
+  name: 'AppHome',
+  components: { RegisterBookButton, BookSearchInput, BookCardList },
   data() {
     return {
-      input: ''
+      filteredBooks: []
     }
   },
   computed: {
-    ...mapGetters({ books: 'getBooks' }),
-    filteredBooks() {
-      if (this.input.length === 0) {
-        return this.books
-      }
-
-      const options = {
-        keys: ['title', 'author', 'tags']
-      }
-      return new Fuse(this.books, options).search(this.input)
-    }
+    ...mapGetters({ books: 'getBooks' })
   },
   created() {
     this.$store.dispatch('setBooks', db.collection('books'))
+    this.filteredBooks = this.books
   },
   methods: {
-    ...mapActions(['setBooks'])
+    ...mapActions(['setBooks']),
+    createFilteredBooks(keyword) {
+      this.filteredBooks = getFilteredBooks(keyword, this.books)
+    }
   }
 }
 </script>
 
-<style>
-.col {
-  margin-bottom: 20px;
+<style scoped>
+.app-home-top {
+  margin-top: 80px;
+  margin-bottom: 80px;
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: space-around;
   justify-content: space-around;
-}
-
-.search {
-  width: 50%;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.books {
-  margin-top: 50px;
 }
 </style>
