@@ -12,6 +12,8 @@ export default {
   methods: {
     signInGoogle() {
       signOut()
+      this.$store.dispatch('setUsername', null)
+      this.$router.push('/home')
     }
   }
 }
