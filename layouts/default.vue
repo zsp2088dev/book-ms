@@ -2,7 +2,7 @@
   <el-container class="app">
     <el-header>
       <div class="header">
-        <img :src="path" alt="logo" width="224" />
+        <img @click="pushTopPage" :src="path" alt="logo" width="224" />
         <el-button @click="registerBook" icon="el-icon-plus" class="form-button"
           >新規登録</el-button
         >
@@ -25,6 +25,9 @@ export default {
   methods: {
     registerBook() {
       this.$router.push('/form')
+    },
+    pushTopPage() {
+      this.$router.push('/')
     }
   }
 }
