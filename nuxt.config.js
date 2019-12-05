@@ -15,7 +15,20 @@ export default {
           '図書管理システムへようこそ。ログインして研究室にある書籍を確認してみましょう。'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32×32',
+        href: '/favicon-32.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '48×48',
+        href: '/favicon-48.png'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
