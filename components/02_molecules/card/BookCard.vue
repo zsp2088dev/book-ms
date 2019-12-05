@@ -1,6 +1,6 @@
 <template>
   <div class="book-card">
-    <el-card class="book-el-card">
+    <el-card class="book-el-card" shadow="hover">
       <book-icon class="book-card-icon" />
       <book-title-text :title="title" class="book-card-title" />
       <book-author-text :author="author" class="book-card-author" />
