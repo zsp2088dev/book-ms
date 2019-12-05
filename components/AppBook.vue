@@ -10,14 +10,14 @@
         <p class="app-book-price">￥ {{ toLocalePrice }}</p>
       </div>
       <div style="text-align: left" class="app-book-tags">
-        <el-button
+        <el-tag
           v-for="(tag, index) in tags"
           :key="index"
-          plain
+          effect="plain"
           class="app-book-tag"
         >
           #{{ tag }}
-        </el-button>
+        </el-tag>
       </div>
     </el-card>
   </div>
