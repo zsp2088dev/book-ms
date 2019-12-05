@@ -1,26 +1,17 @@
 <template>
   <div class="app-header">
     <div class="app-header-items">
-      <app-logo @click="pushTopPage" />
-      <register-book-button @click="pushRegisterPage" />
+      <app-logo />
     </div>
   </div>
 </template>
 
 <script>
 import AppLogo from '../../01_atoms/icon/AppLogo'
-import RegisterBookButton from '../../01_atoms/button/RegisterBookButton'
+
 export default {
   name: 'AppHeader',
-  components: { RegisterBookButton, AppLogo },
-  methods: {
-    pushTopPage() {
-      this.$router.push('/')
-    },
-    pushRegisterPage() {
-      this.$router.push('/form')
-    }
-  }
+  components: { AppLogo }
 }
 </script>
 
