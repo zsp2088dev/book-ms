@@ -35,7 +35,7 @@ export default {
     ...mapGetters({ books: 'getBooks' })
   },
   created() {
-    this.$store.dispatch('setBooks', db.collection('books'))
+    this.setBooks(db.collection('books'))
     this.filteredBooks = this.books
   },
   methods: {
