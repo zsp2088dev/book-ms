@@ -6,6 +6,7 @@ const getFilteredBooks = (keyword, books) => {
   }
 
   const options = {
+    threshold: 0.3,
     keys: ['title', 'author', 'tags']
   }
   return new Fuse(books, options).search(keyword)
