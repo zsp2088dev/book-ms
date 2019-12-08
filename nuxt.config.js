@@ -12,7 +12,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          '図書管理システムへようこそ。ログインして研究室にある書籍を確認してみましょう。'
+          '書籍管理システムへようこそ。ログインして研究室にある書籍を確認してみましょう。'
       }
     ],
     link: [
