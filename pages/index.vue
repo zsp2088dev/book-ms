@@ -36,7 +36,7 @@ export default {
   },
   created() {
     this.setBooks(db.collection('books'))
-    this.filteredBooks = this.books
+    this.filteredBooks = getFilteredBooks('', this.books)
   },
   methods: {
     ...mapActions(['setBooks']),
