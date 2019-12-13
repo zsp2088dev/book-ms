@@ -1,5 +1,5 @@
 # Book MS
-![Book MS](static/book-ms.png)
+![Book MS](static/logo.png)
 
 ## 動作環境
 - Web: Nuxt.js
