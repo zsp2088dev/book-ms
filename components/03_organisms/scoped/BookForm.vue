@@ -18,6 +18,10 @@
         <el-input v-model.number="ruleForm.price" />
       </el-form-item>
 
+      <el-form-item label="出版日" prop="date">
+        <el-date-picker v-model="ruleForm.date" type="date" />
+      </el-form-item>
+
       <el-form-item label="タグ" prop="tags">
         <el-input
           v-model="ruleForm.tags"
@@ -65,6 +69,12 @@ export default {
         callback()
       }
     }
+    const validateDate = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('出版日を入力してください'))
+      }
+      callback()
+    }
     const checkTags = (rule, value, callback) => {
       if (!value) {
         return callback(new Error('タグを1つ以上入力してください'))
@@ -80,12 +90,14 @@ export default {
         title: [{ validator: validateTitle, trigger: 'blur' }],
         author: [{ validator: validateAuthor, trigger: 'blur' }],
         price: [{ validator: validatePrice, trigger: 'blur' }],
+        date: [{ validator: validateDate, trigger: 'blur' }],
         tags: [{ validator: checkTags, trigger: 'blur' }]
       },
       ruleForm: {
         title: '',
         author: '',
         price: '',
+        date: '',
         tags: ''
       }
     }
@@ -98,6 +110,7 @@ export default {
             title: this.ruleForm.title,
             author: this.ruleForm.author,
             price: this.ruleForm.price,
+            date: this.ruleForm.date,
             tags: this.ruleForm.tags.split(' ')
           }
 
@@ -117,5 +130,3 @@ export default {
   }
 }
 </script>
-
-<style scoped></style>

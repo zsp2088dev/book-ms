@@ -4,6 +4,10 @@
       <book-icon class="book-card-icon" />
       <book-title-text :title="title" class="book-card-title" />
       <book-author-text :author="author" class="book-card-author" />
+      <book-publication-date-text
+        :date="date"
+        class="book-card-publication-date"
+      />
       <book-price-text :price="price" class="book-card-price" />
       <div class="book-card-tags">
         <book-tag
@@ -23,9 +27,11 @@ import BookTitleText from '../../01_atoms/text/BookTitleText'
 import BookAuthorText from '../../01_atoms/text/BookAuthorText'
 import BookTag from '../../01_atoms/tag/BookTag'
 import BookPriceText from '../../01_atoms/text/BookPriceText'
+import BookPublicationDateText from '../../01_atoms/text/BookPublicationDateText'
 export default {
   name: 'BookCard',
   components: {
+    BookPublicationDateText,
     BookPriceText,
     BookTag,
     BookAuthorText,
@@ -45,6 +51,10 @@ export default {
       type: Number,
       default: 0
     },
+    date: {
+      type: Object,
+      default: () => {}
+    },
     tags: {
       type: Array,
       default: () => []
@@ -55,7 +65,7 @@ export default {
 
 <style scoped>
 .book-el-card {
-  height: 400px;
+  height: 430px;
 }
 
 .book-card-icon {
@@ -73,6 +83,10 @@ export default {
 
 .book-card-price {
   margin-bottom: 0.5rem;
+}
+
+.book-card-publication-date {
+  margin-bottom: 0.25rem;
 }
 
 .book-card-tags {
