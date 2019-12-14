@@ -65,7 +65,7 @@ export default {
 
 <style scoped>
 .book-el-card {
-  height: 400px;
+  height: 430px;
 }
 
 .book-card-icon {
