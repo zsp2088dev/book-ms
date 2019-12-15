@@ -1,6 +1,6 @@
 import Fuse from 'fuse.js'
 
-const getFilteredBooks = (keyword, books) => {
+export const getFilteredBooks = (keyword, books) => {
   if (keyword.length === 0) {
     return books
   }
@@ -11,5 +11,3 @@ const getFilteredBooks = (keyword, books) => {
   }
   return new Fuse(books, options).search(keyword)
 }
-
-export { getFilteredBooks }
