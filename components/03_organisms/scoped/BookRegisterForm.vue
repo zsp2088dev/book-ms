@@ -1,5 +1,6 @@
 <template>
   <div class="book-register-form">
+    <isbm-img />
     <el-form ref="form" :model="form" :rules="rules">
       <el-form-item label="ISBN" prop="isbn">
         <el-input
@@ -16,9 +17,11 @@
 <script>
 import { getBookFromGoogle } from '../../../plugins/books'
 import { db } from '../../../plugins/firebase'
+import IsbmImg from '../../01_atoms/icon/IsbmImg'
 
 export default {
   name: 'BookRegisterForm',
+  components: { IsbmImg },
   data() {
     const validateISBN = (rule, value, callback) => {
       if (!(value.length === 10 || value.length === 13)) {
@@ -54,3 +57,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.book-register-form {
+  text-align: center;
+}
+</style>
