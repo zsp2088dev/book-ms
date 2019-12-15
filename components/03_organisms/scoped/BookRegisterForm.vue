@@ -40,7 +40,8 @@ export default {
         }
         await getBookFromGoogle(this.form.isbn).then((book) => {
           db.collection('books')
-            .add(book)
+            .doc(book.id)
+            .set(book)
             .then(() => {
               this.$router.push('/')
             })
