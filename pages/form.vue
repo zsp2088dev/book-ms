@@ -1,14 +1,15 @@
 <template>
   <div class="app-form">
-    <book-form />
+    <book-register-form />
   </div>
 </template>
 
 <script>
-import BookForm from '../components/03_organisms/scoped/BookForm'
+import BookRegisterForm from '../components/03_organisms/scoped/BookRegisterForm'
+
 export default {
   name: 'AppForm',
-  components: { BookForm }
+  components: { BookRegisterForm }
 }
 </script>
 
