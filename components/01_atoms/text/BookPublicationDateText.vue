@@ -30,6 +30,5 @@ export default {
 <style scoped>
 .book-publication-date-text {
   color: #606266;
-  font-size: 0.85rem;
 }
 </style>
