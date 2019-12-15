@@ -11,9 +11,7 @@
         <book-card
           :title="book.title"
           :author="book.author"
-          :price="book.price"
           :date="book.date"
-          :tags="book.tags"
           class="book-card"
         />
       </el-col>
