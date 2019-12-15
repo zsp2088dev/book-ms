@@ -21,7 +21,7 @@ export default {
       const year = timestamp.getFullYear()
       const month = timestamp.getMonth() + 1
       const date = timestamp.getDate()
-      return `${year}年${month}月${date}日`
+      return `${year}年${month}月${date}日 発売`
     }
   }
 }
