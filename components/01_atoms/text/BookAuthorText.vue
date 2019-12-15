@@ -1,6 +1,6 @@
 <template>
   <div class="book-author-text">
-    <p>{{ author }}</p>
+    <p>{{ author }} 著</p>
   </div>
 </template>
 

@@ -21,7 +21,7 @@ export default {
       const year = timestamp.getFullYear()
       const month = timestamp.getMonth() + 1
       const date = timestamp.getDate()
-      return `${year}年${month}月${date}日`
+      return `${year}年${month}月${date}日 発売`
     }
   }
 }
@@ -30,6 +30,5 @@ export default {
 <style scoped>
 .book-publication-date-text {
   color: #606266;
-  font-size: 0.85rem;
 }
 </style>
