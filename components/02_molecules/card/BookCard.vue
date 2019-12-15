@@ -78,15 +78,11 @@ export default {
 }
 
 .book-card-author {
-  margin-bottom: 0.25rem;
-}
-
-.book-card-price {
-  margin-bottom: 0.5rem;
+  margin-bottom: 2px;
 }
 
 .book-card-publication-date {
-  margin-bottom: 0.25rem;
+  margin-bottom: 2px;
 }
 
 .book-card-tags {
@@ -97,6 +93,6 @@ export default {
 }
 
 .book-card-tag {
-  margin: 0.25rem;
+  margin-top: 25px;
 }
 </style>
