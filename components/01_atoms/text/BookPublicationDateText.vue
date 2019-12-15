@@ -1,6 +1,6 @@
 <template>
   <div class="book-publication-date-text">
-    <p>{{ toDateString }}</p>
+    <p>{{ bookPublicationDate }}</p>
   </div>
 </template>
 
@@ -9,19 +9,19 @@ export default {
   name: 'BookPublicationDateText',
   props: {
     date: {
-      type: Object,
-      default: () => ({
-        seconds: 0
-      })
+      type: String,
+      default: ''
     }
   },
   computed: {
-    toDateString() {
-      const timestamp = new Date(this.date.seconds * 1000)
-      const year = timestamp.getFullYear()
-      const month = timestamp.getMonth() + 1
-      const date = timestamp.getDate()
-      return `${year}年${month}月${date}日 発売`
+    bookPublicationDate() {
+      const includeDate = this.date.split('-').length - 1 === 2
+
+      if (includeDate) {
+        return this.date.replace(/(\d+)-(\d+)-(\d+)/g, '$1年$2月$3日')
+      } else {
+        return this.date.replace(/(\d+)-(\d+)/g, '$1年$2月')
+      }
     }
   }
 }

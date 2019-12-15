@@ -1,15 +1,32 @@
 import Fuse from 'fuse.js'
+import axios from 'axios'
 
-const getFilteredBooks = (keyword, books) => {
+export const getFilteredBooks = (keyword, books) => {
   if (keyword.length === 0) {
     return books
   }
 
   const options = {
     threshold: 0.3,
-    keys: ['title', 'author', 'tags']
+    keys: ['title', 'author']
   }
   return new Fuse(books, options).search(keyword)
 }
 
-export { getFilteredBooks }
+export const getBookFromGoogle = (isbn) => {
+  const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`
+  return axios.get(url).then((r) => {
+    if (r.data.totalItems !== 1) {
+      return new Error('Unexpected ISBN')
+    }
+
+    const book = r.data.items[0].volumeInfo
+    return {
+      id: r.data.items[0].id,
+      title: book.title,
+      subtitle: book.subtitle ? book.subtitle : '',
+      author: book.authors[0],
+      date: book.publishedDate
+    }
+  })
+}

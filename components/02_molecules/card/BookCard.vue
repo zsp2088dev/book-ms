@@ -8,15 +8,6 @@
         :date="date"
         class="book-card-publication-date"
       />
-      <book-price-text :price="price" class="book-card-price" />
-      <div class="book-card-tags">
-        <book-tag
-          v-for="(tag, index) in tags"
-          :key="index"
-          :tag="tag"
-          class="book-card-tag"
-        />
-      </div>
     </el-card>
   </div>
 </template>
@@ -25,15 +16,12 @@
 import BookIcon from '../../01_atoms/icon/BookIcon'
 import BookTitleText from '../../01_atoms/text/BookTitleText'
 import BookAuthorText from '../../01_atoms/text/BookAuthorText'
-import BookTag from '../../01_atoms/tag/BookTag'
-import BookPriceText from '../../01_atoms/text/BookPriceText'
 import BookPublicationDateText from '../../01_atoms/text/BookPublicationDateText'
+
 export default {
   name: 'BookCard',
   components: {
     BookPublicationDateText,
-    BookPriceText,
-    BookTag,
     BookAuthorText,
     BookTitleText,
     BookIcon
@@ -47,17 +35,9 @@ export default {
       type: String,
       default: ''
     },
-    price: {
-      type: Number,
-      default: 0
-    },
     date: {
-      type: Object,
-      default: () => {}
-    },
-    tags: {
-      type: Array,
-      default: () => []
+      type: String,
+      default: ''
     }
   }
 }
@@ -83,16 +63,5 @@ export default {
 
 .book-card-publication-date {
   margin-bottom: 2px;
-}
-
-.book-card-tags {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-}
-
-.book-card-tag {
-  margin-top: 25px;
 }
 </style>
