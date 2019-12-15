@@ -2,7 +2,10 @@
   <div class="book-register-form">
     <el-form ref="form" :model="form" :rules="rules">
       <el-form-item label="ISBN" prop="isbn">
-        <el-input v-model="form.isbn" />
+        <el-input
+          v-model="form.isbn"
+          placeholder="ハイフンなしで10桁もしくは13桁入力してください"
+        />
       </el-form-item>
     </el-form>
 
