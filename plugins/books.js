@@ -21,10 +21,10 @@ export const getBookFromGoogle = (isbn) => {
     }
 
     const book = r.data.items[0].volumeInfo
-
     return {
+      id: book.id,
       title: book.title,
-      subtitle: book.subtitle,
+      subtitle: book.subtitle ? book.subtitle : '',
       author: book.authors[0],
       date: book.publishedDate
     }
