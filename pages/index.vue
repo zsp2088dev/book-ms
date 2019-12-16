@@ -4,7 +4,20 @@
       <register-book-button />
       <book-search-input @keyword="createFilteredBooks" />
       <sign-out-button />
-      <el-button @click="deleteBooks" icon="el-icon-delete" plain />
+      <el-button @click="dialog = true" icon="el-icon-delete" plain />
+
+      <el-dialog
+        :visible.sync="dialog"
+        :before-close="deleteBooks"
+        title="書籍削除の確認"
+        width="30%"
+      >
+        <span>書籍を削除しますか？</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="deleteBooks" type="primary">削除</el-button>
+          <el-button @click="dialog = false">キャンセル</el-button>
+        </span>
+      </el-dialog>
     </div>
     <book-card-list
       :books="filteredBooks"
@@ -34,7 +47,8 @@ export default {
   data() {
     return {
       filteredBooks: [],
-      checkedBooks: []
+      checkedBooks: [],
+      dialog: false
     }
   },
   computed: {
@@ -53,6 +67,8 @@ export default {
       this.checkedBooks = checkedBooks
     },
     deleteBooks() {
+      this.dialog = false
+
       if (!this.checkedBooks.length) {
         return
       }
