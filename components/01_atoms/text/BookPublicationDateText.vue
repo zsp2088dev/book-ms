@@ -1,6 +1,6 @@
 <template>
   <div class="book-publication-date-text">
-    <p>{{ bookPublicationDate }}</p>
+    <p>{{ date }}</p>
   </div>
 </template>
 
@@ -11,17 +11,6 @@ export default {
     date: {
       type: String,
       default: ''
-    }
-  },
-  computed: {
-    bookPublicationDate() {
-      const includeDate = this.date.split('-').length - 1 === 2
-
-      if (includeDate) {
-        return this.date.replace(/(\d+)-(\d+)-(\d+)/g, '$1年$2月$3日')
-      } else {
-        return this.date.replace(/(\d+)-(\d+)/g, '$1年$2月')
-      }
     }
   }
 }
