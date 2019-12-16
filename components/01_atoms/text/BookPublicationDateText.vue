@@ -1,6 +1,6 @@
 <template>
   <div class="book-publication-date-text">
-    <p>{{ date }}</p>
+    <p>{{ date }} 発売</p>
   </div>
 </template>
 
