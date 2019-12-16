@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import { getBookFromGoogle } from '../../../plugins/books'
 import { db } from '../../../plugins/firebase'
 import IsbmImg from '../../01_atoms/icon/IsbmImg'
+import { getBookFromAPI } from '../../../plugins/books'
 
 export default {
   name: 'BookRegisterForm',
@@ -40,11 +40,11 @@ export default {
   },
   methods: {
     submit(form) {
-      this.$refs[form].validate(async (valid) => {
+      this.$refs[form].validate((valid) => {
         if (!valid) {
           return false
         }
-        await getBookFromGoogle(this.form.isbn).then((book) => {
+        getBookFromAPI(this.form.isbn).then((book) => {
           db.collection('books')
             .doc(book.id)
             .set(book)

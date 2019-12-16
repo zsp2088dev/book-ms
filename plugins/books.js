@@ -32,11 +32,11 @@ const convertDate = (raw) => {
   return date
 }
 
-export const getBookFromGoogle = (isbn) => {
+const getBookFromGoogle = (isbn) => {
   const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`
   return axios.get(url).then((r) => {
     if (r.data.totalItems !== 1) {
-      return new Error('Unexpected ISBN')
+      return {}
     }
 
     const book = r.data.items[0].volumeInfo
@@ -49,11 +49,11 @@ export const getBookFromGoogle = (isbn) => {
   })
 }
 
-export const getBookFromOpenBD = (isbn) => {
+const getBookFromOpenBD = (isbn) => {
   const url = `https://api.openbd.jp/v1/get?isbn=${isbn}`
   return axios.get(url).then((r) => {
-    if (!r.data.length) {
-      return new Error('Unexpected ISBN')
+    if (!r.data[0]) {
+      return {}
     }
 
     const book = r.data[0].summary
@@ -65,6 +65,18 @@ export const getBookFromOpenBD = (isbn) => {
       date: convertDate(book.pubdate)
     }
   })
+}
+
+export const getBookFromAPI = async (isbn) => {
+  const googleBookResult = await getBookFromGoogle(isbn)
+  if ('id' in googleBookResult) {
+    return googleBookResult
+  }
+
+  const openBDResult = await getBookFromOpenBD(isbn)
+  if ('id' in openBDResult.length) {
+    return openBDResult
+  }
 }
 
 export const buildCheckedBooks = (checkedBooks, book) => {
