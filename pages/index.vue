@@ -61,8 +61,13 @@ export default {
         db.collection('books')
           .doc(id)
           .delete()
+          .then(() => {
+            this.$message({
+              type: 'primary',
+              message: `ISBN: ${id} を削除しました`
+            })
+          })
       }
-      this.checkedBooks = []
     }
   }
 }
