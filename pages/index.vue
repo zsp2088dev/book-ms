@@ -1,11 +1,9 @@
 <template>
   <div class="app-home">
     <div class="app-home-top">
-      <register-book-button />
       <book-search-input @keyword="createFilteredBooks" />
       <sign-out-button />
       <el-button @click="dialog = true" icon="el-icon-delete" plain />
-
       <el-dialog
         :visible.sync="dialog"
         :before-close="deleteBooks"
@@ -24,6 +22,7 @@
       @checkBooks="setCheckedBooks"
       class="app-home-book-card-list"
     />
+    <plus-button class="app-home-plus-button" />
   </div>
 </template>
 
@@ -31,16 +30,16 @@
 import { mapActions, mapGetters } from 'vuex'
 import BookCardList from '../components/03_organisms/scoped/BookCardList'
 import BookSearchInput from '../components/02_molecules/form/BookSearchInput'
-import RegisterBookButton from '../components/01_atoms/button/RegisterBookButton'
 import SignOutButton from '../components/01_atoms/button/SignOutButton'
+import PlusButton from '../components/01_atoms/button/PlusButton'
 import { db } from '~/plugins/firebase'
 import { getFilteredBooks } from '~/plugins/books'
 
 export default {
   name: 'AppHome',
   components: {
+    PlusButton,
     SignOutButton,
-    RegisterBookButton,
     BookSearchInput,
     BookCardList
   },
@@ -97,5 +96,11 @@ export default {
   display: flex;
   -webkit-justify-content: space-around;
   justify-content: space-around;
+}
+
+.app-home-plus-button {
+  position: fixed;
+  right: 35px;
+  bottom: 35px;
 }
 </style>
