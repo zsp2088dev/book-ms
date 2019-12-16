@@ -1,6 +1,7 @@
 <template>
   <div class="book-card">
     <el-card class="book-el-card" shadow="hover">
+      <el-checkbox v-model="checked" @change="checkedBook" />
       <book-icon class="book-card-icon" />
       <book-title-text :title="title" class="book-card-title" />
       <book-author-text :author="author" class="book-card-author" />
@@ -42,6 +43,16 @@ export default {
     date: {
       type: String,
       default: ''
+    }
+  },
+  data() {
+    return {
+      checked: false
+    }
+  },
+  methods: {
+    checkedBook() {
+      this.$emit('checkBook', { id: this.id, checked: this.checked })
     }
   }
 }

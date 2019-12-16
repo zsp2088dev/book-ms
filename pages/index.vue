@@ -4,8 +4,13 @@
       <register-book-button />
       <book-search-input @keyword="createFilteredBooks" />
       <sign-out-button />
+      <el-button @click="deleteBooks" icon="el-icon-delete" plain />
     </div>
-    <book-card-list :books="filteredBooks" class="app-home-book-card-list" />
+    <book-card-list
+      :books="filteredBooks"
+      @checkBooks="setCheckedBooks"
+      class="app-home-book-card-list"
+    />
   </div>
 </template>
 
@@ -28,7 +33,8 @@ export default {
   },
   data() {
     return {
-      filteredBooks: []
+      filteredBooks: [],
+      checkedBooks: []
     }
   },
   computed: {
@@ -42,6 +48,21 @@ export default {
     ...mapActions(['setBooks']),
     createFilteredBooks(keyword) {
       this.filteredBooks = getFilteredBooks(keyword, this.books)
+    },
+    setCheckedBooks(checkedBooks) {
+      this.checkedBooks = checkedBooks
+    },
+    deleteBooks() {
+      if (!this.checkedBooks.length) {
+        return
+      }
+
+      for (const id of this.checkedBooks) {
+        db.collection('books')
+          .doc(id)
+          .delete()
+      }
+      this.checkedBooks = []
     }
   }
 }

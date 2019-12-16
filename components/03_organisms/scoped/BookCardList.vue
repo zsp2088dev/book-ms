@@ -13,6 +13,7 @@
           :title="book.title"
           :author="book.author"
           :date="book.date"
+          @checkBook="checkBooks"
           class="book-card"
         />
       </el-col>
@@ -22,6 +23,7 @@
 
 <script>
 import BookCard from '../../02_molecules/card/BookCard'
+import { buildCheckedBooks } from '../../../plugins/books'
 export default {
   name: 'BookCardList',
   components: { BookCard },
@@ -29,6 +31,17 @@ export default {
     books: {
       type: Array,
       default: () => []
+    }
+  },
+  data() {
+    return {
+      checkedBooks: []
+    }
+  },
+  methods: {
+    checkBooks(book) {
+      this.checkedBooks = buildCheckedBooks(this.checkedBooks, book)
+      this.$emit('checkBooks', this.checkedBooks)
     }
   }
 }
