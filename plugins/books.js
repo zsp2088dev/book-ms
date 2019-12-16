@@ -36,7 +36,7 @@ const getBookFromGoogle = (isbn) => {
   const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`
   return axios.get(url).then((r) => {
     if (r.data.totalItems !== 1) {
-      return {}
+      return false
     }
 
     const book = r.data.items[0].volumeInfo
@@ -53,7 +53,7 @@ const getBookFromOpenBD = (isbn) => {
   const url = `https://api.openbd.jp/v1/get?isbn=${isbn}`
   return axios.get(url).then((r) => {
     if (!r.data[0]) {
-      return {}
+      return false
     }
 
     const book = r.data[0].summary
@@ -69,12 +69,12 @@ const getBookFromOpenBD = (isbn) => {
 
 export const getBookFromAPI = async (isbn) => {
   const googleBookResult = await getBookFromGoogle(isbn)
-  if ('id' in googleBookResult) {
+  if (googleBookResult) {
     return googleBookResult
   }
 
   const openBDResult = await getBookFromOpenBD(isbn)
-  if ('id' in openBDResult.length) {
+  if (openBDResult) {
     return openBDResult
   }
 }
