@@ -4,8 +4,26 @@
       <register-book-button />
       <book-search-input @keyword="createFilteredBooks" />
       <sign-out-button />
+      <el-button @click="dialog = true" icon="el-icon-delete" plain />
+
+      <el-dialog
+        :visible.sync="dialog"
+        :before-close="deleteBooks"
+        title="書籍削除の確認"
+        width="30%"
+      >
+        <span>書籍を削除しますか？</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="deleteBooks" type="primary">削除</el-button>
+          <el-button @click="dialog = false">キャンセル</el-button>
+        </span>
+      </el-dialog>
     </div>
-    <book-card-list :books="filteredBooks" class="app-home-book-card-list" />
+    <book-card-list
+      :books="filteredBooks"
+      @checkBooks="setCheckedBooks"
+      class="app-home-book-card-list"
+    />
   </div>
 </template>
 
@@ -28,7 +46,9 @@ export default {
   },
   data() {
     return {
-      filteredBooks: []
+      filteredBooks: [],
+      checkedBooks: [],
+      dialog: false
     }
   },
   computed: {
@@ -42,6 +62,28 @@ export default {
     ...mapActions(['setBooks']),
     createFilteredBooks(keyword) {
       this.filteredBooks = getFilteredBooks(keyword, this.books)
+    },
+    setCheckedBooks(checkedBooks) {
+      this.checkedBooks = checkedBooks
+    },
+    deleteBooks() {
+      this.dialog = false
+
+      if (!this.checkedBooks.length) {
+        return
+      }
+
+      for (const id of this.checkedBooks) {
+        db.collection('books')
+          .doc(id)
+          .delete()
+          .then(() => {
+            this.$message({
+              type: 'primary',
+              message: `ISBN: ${id} を削除しました`
+            })
+          })
+      }
     }
   }
 }
