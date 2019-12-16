@@ -24,8 +24,8 @@ const convertDate = (raw) => {
     }
   } else {
     const y = raw.slice(0, 4) + '年'
-    const m = raw.slice(5, 7) + '月'
-    const d = raw.slice(8, 10) ? raw.slice(8, 10) + '日' : ''
+    const m = raw.slice(4, 6) + '月'
+    const d = raw.slice(6, 8) ? raw.slice(6, 8) + '日' : ''
     date = y + m + d
   }
 
