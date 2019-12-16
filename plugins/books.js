@@ -30,3 +30,15 @@ export const getBookFromGoogle = (isbn) => {
     }
   })
 }
+
+export const buildCheckedBooks = (checkedBooks, book) => {
+  const setCheckedBooks = new Set(checkedBooks)
+
+  if (book.checked) {
+    setCheckedBooks.add(book.id)
+  } else {
+    setCheckedBooks.delete(book.id)
+  }
+
+  return Array.from(setCheckedBooks)
+}
