@@ -13,6 +13,25 @@ export const getFilteredBooks = (keyword, books) => {
   return new Fuse(books, options).search(keyword)
 }
 
+const convertDate = (raw) => {
+  let date
+  if (raw.match(/-/)) {
+    const includeDate = raw.split('-').length - 1 === 2
+    if (includeDate) {
+      date = raw.replace(/(\d+)-(\d+)-(\d+)/g, '$1年$2月$3日')
+    } else {
+      date = raw.replace(/(\d+)-(\d+)/g, '$1年$2月')
+    }
+  } else {
+    const y = raw.slice(0, 4) + '年'
+    const m = raw.slice(5, 7) + '月'
+    const d = raw.slice(8, 10) ? raw.slice(8, 10) + '日' : ''
+    date = y + m + d
+  }
+
+  return date
+}
+
 export const getBookFromGoogle = (isbn) => {
   const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`
   return axios.get(url).then((r) => {
@@ -22,11 +41,10 @@ export const getBookFromGoogle = (isbn) => {
 
     const book = r.data.items[0].volumeInfo
     return {
-      id: r.data.items[0].id,
+      id: book.industryIdentifiers.slice(-1)[0].identifier,
       title: book.title,
-      subtitle: book.subtitle ? book.subtitle : '',
       author: book.authors[0],
-      date: book.publishedDate
+      date: convertDate(book.publishedDate)
     }
   })
 }
@@ -40,28 +58,11 @@ export const getBookFromOpenBD = (isbn) => {
 
     const book = r.data[0].summary
 
-    // 取得した日付に関する操作
-    const pubDate = book.pubdate
-    let publicationDate
-    if (book.pubdate.match(/-/)) {
-      const includeDate = pubDate.split('-').length - 1 === 2
-      if (includeDate) {
-        publicationDate = pubDate.replace(/(\d+)-(\d+)-(\d+)/g, '$1年$2月$3日')
-      } else {
-        publicationDate = pubDate.replace(/(\d+)-(\d+)/g, '$1年$2月')
-      }
-    } else {
-      const year = pubDate.slice(0, 4) + '年'
-      const month = pubDate.slice(5, 7) + '月'
-      const date = pubDate.slice(8, 10) ? pubDate.slice(8, 10) + '日' : ''
-      publicationDate = year + month + date
-    }
-
     return {
       id: book.isbn,
       title: book.title,
       author: book.author.split('／')[0],
-      date: publicationDate
+      date: convertDate(book.pubdate)
     }
   })
 }
