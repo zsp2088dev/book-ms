@@ -27,6 +27,10 @@ export default {
     BookIcon
   },
   props: {
+    id: {
+      type: String,
+      default: ''
+    },
     title: {
       type: String,
       default: ''

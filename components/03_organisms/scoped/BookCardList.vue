@@ -2,13 +2,14 @@
   <div class="book-card-list">
     <el-row :gutter="20">
       <el-col
-        v-for="(book, index) in books"
-        :key="index"
+        v-for="book in books"
+        :key="book.id"
         :span="6"
         :offset="0"
         class="book-card-list-col"
       >
         <book-card
+          :id="book.id"
           :title="book.title"
           :author="book.author"
           :date="book.date"
