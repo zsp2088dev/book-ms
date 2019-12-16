@@ -1,6 +1,6 @@
 <template>
   <div class="book-card">
-    <el-card class="book-el-card" shadow="hover">
+    <el-card :style="styles" class="book-el-card" shadow="hover">
       <el-checkbox v-model="checked" @change="checkedBook" />
       <book-icon class="book-card-icon" />
       <book-title-text :title="title" class="book-card-title" />
@@ -50,6 +50,19 @@ export default {
       checked: false
     }
   },
+  computed: {
+    styles() {
+      if (this.checked) {
+        return {
+          '--color': '#ecf5ff'
+        }
+      } else {
+        return {
+          '--color': '#ffffff'
+        }
+      }
+    }
+  },
   methods: {
     checkedBook() {
       this.$emit('checkBook', { id: this.id, checked: this.checked })
@@ -59,6 +72,11 @@ export default {
 </script>
 
 <style scoped>
+.book-el-card {
+  --color: 'ffffff';
+  background: var(--color);
+}
+
 .book-el-card {
   height: 430px;
 }
