@@ -1,28 +1,66 @@
 <template>
   <div class="book-register-form">
-    <isbm-img />
-    <el-form ref="form" :model="form" :rules="rules">
+    <isbm-img class="book-register-form-image" />
+
+    <el-form :inline="true" :model="form" :rules="rules" label-width="120px">
       <el-form-item label="ISBN" prop="isbn">
         <el-input
           v-model="form.isbn"
           placeholder="ハイフンなしで10桁もしくは13桁入力してください"
         />
       </el-form-item>
+      <el-form-item>
+        <el-button @click="searchBook">検索</el-button>
+      </el-form-item>
     </el-form>
 
-    <el-button @click="submit('form')">登録</el-button>
+    <el-form ref="form" :model="form" :rules="rules" label-width="120px">
+      <el-form-item label="タイトル" prop="title">
+        <el-input v-model="form.title" />
+      </el-form-item>
+
+      <el-form-item label="著者" prop="author">
+        <el-input v-model="form.author" />
+      </el-form-item>
+
+      <el-form-item label="出版日" prop="date">
+        <el-date-picker v-model="form.date" type="date" />
+      </el-form-item>
+
+      <el-form-item>
+        <el-button @click="submit('form')">登録</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script>
 import { db } from '../../../plugins/firebase'
 import IsbmImg from '../../01_atoms/icon/IsbmImg'
-import { getBookFromAPI } from '../../../plugins/books'
+import { dateToString, getBookFromAPI } from '../../../plugins/books'
 
 export default {
   name: 'BookRegisterForm',
   components: { IsbmImg },
   data() {
+    const validateTitle = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('タイトルを入力してください'))
+      }
+      callback()
+    }
+    const validateAuthor = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('著者を入力してください'))
+      }
+      callback()
+    }
+    const validateDate = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('出版日を入力してください'))
+      }
+      callback()
+    }
     const validateISBN = (rule, value, callback) => {
       if (!(value.length === 10 || value.length === 13)) {
         callback(new Error('ISBNは10桁もしくは13桁です'))
@@ -31,10 +69,16 @@ export default {
     }
     return {
       rules: {
-        isbn: [{ validator: validateISBN, trigger: 'blur' }]
+        isbn: [{ validator: validateISBN, trigger: 'blur' }],
+        title: [{ validator: validateTitle, trigger: 'blur' }],
+        author: [{ validator: validateAuthor, trigger: 'blur' }],
+        date: [{ validator: validateDate, trigger: 'blur' }]
       },
       form: {
-        isbn: ''
+        isbn: '',
+        title: '',
+        author: '',
+        date: ''
       }
     }
   },
@@ -44,14 +88,26 @@ export default {
         if (!valid) {
           return false
         }
-        getBookFromAPI(this.form.isbn).then((book) => {
-          db.collection('books')
-            .doc(book.id)
-            .set(book)
-            .then(() => {
-              this.$router.push('/')
-            })
-        })
+        const bookRef = {
+          id: this.form.isbn,
+          title: this.form.title,
+          author: this.form.author,
+          date: dateToString(this.form.date)
+        }
+
+        db.collection('books')
+          .doc(this.form.isbn)
+          .set(bookRef)
+          .then(() => {
+            this.$router.push('/')
+          })
+      })
+    },
+    searchBook() {
+      getBookFromAPI(this.form.isbn).then((book) => {
+        this.form.title = book.title
+        this.form.author = book.author
+        this.form.date = book.date
       })
     }
   }
@@ -59,7 +115,8 @@ export default {
 </script>
 
 <style>
-.book-register-form {
+.book-register-form-image {
   text-align: center;
+  margin-bottom: 30px;
 }
 </style>
