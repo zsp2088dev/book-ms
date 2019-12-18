@@ -88,7 +88,8 @@ export default {
           id: this.form.isbn,
           title: this.form.title,
           author: this.form.author,
-          date: dateToString(this.form.date)
+          date: dateToString(this.form.date),
+          username: this.$store.getters.getUsername
         }
 
         db.collection('books')

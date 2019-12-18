@@ -26,6 +26,6 @@ export const actions = {
 
 export const getters = {
   getBooks: (state) => state.books,
-  getUserName: (state) => state.username,
+  getUsername: (state) => state.username,
   isAuthenticated: (state) => !!state.username
 }
