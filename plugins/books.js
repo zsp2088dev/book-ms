@@ -15,21 +15,16 @@ export const getFilteredBooks = (keyword, books) => {
 
 const convertDate = (raw) => {
   let date
-  if (raw.match(/-/)) {
-    const includeDate = raw.split('-').length - 1 === 2
-    if (includeDate) {
-      date = raw.replace(/(\d+)-(\d+)-(\d+)/g, '$1年$2月$3日')
-    } else {
-      date = raw.replace(/(\d+)-(\d+)/g, '$1年$2月')
-    }
-  } else {
-    const y = raw.slice(0, 4) + '年'
-    const m = raw.slice(4, 6) + '月'
-    const d = raw.slice(6, 8) ? raw.slice(6, 8) + '日' : ''
+  if (!raw.match(/-/)) {
+    const y = raw.slice(0, 4) + '-'
+    const m = raw.slice(4, 6) + '-'
+    const d = raw.slice(6, 8) ? raw.slice(6, 8) : ''
     date = y + m + d
+  } else {
+    date = raw
   }
 
-  return date
+  return new Date(date)
 }
 
 const getBookFromGoogle = (isbn) => {
@@ -77,6 +72,13 @@ export const getBookFromAPI = async (isbn) => {
   if (openBDResult) {
     return openBDResult
   }
+}
+
+export const dateToString = (date) => {
+  const y = date.getFullYear()
+  const m = date.getMonth() + 1
+  const d = date.getDate()
+  return `${y}年${m}月${d}日`
 }
 
 export const buildCheckedBooks = (checkedBooks, book) => {
