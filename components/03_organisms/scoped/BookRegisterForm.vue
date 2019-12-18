@@ -4,10 +4,7 @@
 
     <el-form :inline="true" :model="form" :rules="rules" label-width="120px">
       <el-form-item label="ISBN" prop="isbn">
-        <el-input
-          v-model="form.isbn"
-          placeholder="ハイフンなしで10桁もしくは13桁入力してください"
-        />
+        <el-input v-model="form.isbn" placeholder="ハイフンなし" />
       </el-form-item>
       <el-form-item>
         <el-button @click="searchBook">検索</el-button>
