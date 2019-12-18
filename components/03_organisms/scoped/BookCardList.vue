@@ -13,6 +13,7 @@
           :title="book.title"
           :author="book.author"
           :date="book.date"
+          :username="book.username"
           @checkBook="checkBooks"
           class="book-card"
         />

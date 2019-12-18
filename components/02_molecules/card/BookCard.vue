@@ -9,6 +9,7 @@
         :date="date"
         class="book-card-publication-date"
       />
+      <book-username-text :username="username" class="book-card-username" />
     </el-card>
   </div>
 </template>
@@ -18,10 +19,12 @@ import BookIcon from '../../01_atoms/icon/BookIcon'
 import BookTitleText from '../../01_atoms/text/BookTitleText'
 import BookAuthorText from '../../01_atoms/text/BookAuthorText'
 import BookPublicationDateText from '../../01_atoms/text/BookPublicationDateText'
+import BookUsernameText from '../../01_atoms/text/BookUsernameText'
 
 export default {
   name: 'BookCard',
   components: {
+    BookUsernameText,
     BookPublicationDateText,
     BookAuthorText,
     BookTitleText,
@@ -41,6 +44,10 @@ export default {
       default: ''
     },
     date: {
+      type: String,
+      default: ''
+    },
+    username: {
       type: String,
       default: ''
     }
