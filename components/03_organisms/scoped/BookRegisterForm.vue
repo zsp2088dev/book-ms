@@ -23,6 +23,16 @@
         <el-date-picker v-model="form.date" type="date" />
       </el-form-item>
 
+      <el-form-item label="アイコン" prop="icon">
+        <book-icon :icon="form.icon" />
+        <el-radio-group v-model="form.icon">
+          <el-radio label="Book" />
+          <el-radio label="Database" />
+          <el-radio label="Laptop" />
+          <el-radio label="Program" />
+        </el-radio-group>
+      </el-form-item>
+
       <el-form-item>
         <el-button @click="submit('form')" plain>登録</el-button>
       </el-form-item>
@@ -34,10 +44,11 @@
 import { db } from '../../../plugins/firebase'
 import IsbmImg from '../../01_atoms/icon/IsbmImg'
 import { dateToString, getBookFromAPI } from '../../../plugins/books'
+import BookIcon from '../../01_atoms/icon/BookIcon'
 
 export default {
   name: 'BookRegisterForm',
-  components: { IsbmImg },
+  components: { BookIcon, IsbmImg },
   data() {
     const validateTitle = (rule, value, callback) => {
       if (!value) {
@@ -74,7 +85,8 @@ export default {
         isbn: '',
         title: '',
         author: '',
-        date: ''
+        date: '',
+        icon: 'Book'
       }
     }
   },
@@ -89,6 +101,7 @@ export default {
           title: this.form.title,
           author: this.form.author,
           date: dateToString(this.form.date),
+          icon: this.form.icon,
           username: this.$store.getters.getUsername
         }
 
