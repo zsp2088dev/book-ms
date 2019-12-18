@@ -24,7 +24,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button @click="submit('form')">登録</el-button>
+        <el-button @click="submit('form')" plain>登録</el-button>
       </el-form-item>
     </el-form>
   </div>
