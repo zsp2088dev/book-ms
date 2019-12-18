@@ -2,7 +2,7 @@
   <div class="book-card">
     <el-card :style="styles" class="book-el-card" shadow="hover">
       <el-checkbox v-model="checked" @change="checkedBook" />
-      <book-icon class="book-card-icon" />
+      <book-icon :icon="icon" class="book-card-icon" />
       <book-title-text :title="title" class="book-card-title" />
       <book-author-text :author="author" class="book-card-author" />
       <book-publication-date-text
@@ -34,6 +34,10 @@ export default {
     id: {
       type: String,
       default: ''
+    },
+    icon: {
+      type: String,
+      default: 'Book'
     },
     title: {
       type: String,

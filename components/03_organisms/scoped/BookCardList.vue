@@ -10,6 +10,7 @@
       >
         <book-card
           :id="book.id"
+          :icon="book.icon"
           :title="book.title"
           :author="book.author"
           :date="book.date"
