@@ -2,16 +2,15 @@
   <div class="book-register-form">
     <isbm-img class="book-register-form-image" />
 
-    <el-form :inline="true" :model="form" :rules="rules" label-width="120px">
+    <el-form ref="form" :model="form" :rules="rules" label-width="120px">
       <el-form-item label="ISBN" prop="isbn">
         <el-input v-model="form.isbn" placeholder="ハイフンなし" />
       </el-form-item>
-      <el-form-item>
-        <el-button @click="searchBook">検索</el-button>
-      </el-form-item>
-    </el-form>
 
-    <el-form ref="form" :model="form" :rules="rules" label-width="120px">
+      <el-form-item>
+        <el-button @click="searchBook" plain>ISBNコードから検索</el-button>
+      </el-form-item>
+
       <el-form-item label="タイトル" prop="title">
         <el-input v-model="form.title" />
       </el-form-item>
