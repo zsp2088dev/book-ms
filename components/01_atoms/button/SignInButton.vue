@@ -1,6 +1,6 @@
 <template>
   <div class="sign-in-button">
-    <el-button @click="signInGoogle" plain>SignIn</el-button>
+    <el-button @click="signInGoogle" plain>ログイン</el-button>
   </div>
 </template>
 
@@ -16,5 +16,3 @@ export default {
   }
 }
 </script>
-
-<style scoped></style>
