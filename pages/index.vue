@@ -1,9 +1,9 @@
 <template>
   <div class="app-home">
     <div class="app-home-top">
+      <el-button @click="dialog = true" icon="el-icon-delete" plain circle />
       <book-search-input @keyword="createFilteredBooks" />
       <sign-out-button />
-      <el-button @click="dialog = true" icon="el-icon-delete" plain />
       <el-dialog
         :visible.sync="dialog"
         :before-close="deleteBooks"
