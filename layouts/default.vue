@@ -30,14 +30,6 @@ export default {
   font-weight: 400;
   color: #2e2e2e;
   -webkit-font-smoothing: antialiased;
-}
-
-.app-el-header {
-  margin-left: 80px;
-  margin-right: 80px;
-}
-
-.app-el-main {
   margin-left: 80px;
   margin-right: 80px;
 }
