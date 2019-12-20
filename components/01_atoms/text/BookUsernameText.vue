@@ -1,6 +1,6 @@
 <template>
   <div class="book-username-text">
-    <p>{{ username }} 購入</p>
+    <p>{{ username }} 所持</p>
   </div>
 </template>
 
